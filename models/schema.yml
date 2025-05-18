@@ -64,34 +64,6 @@ models:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
-<<<<<<< HEAD
-
-  - name: customer_metrics
-    description: Metrics related to customer data
-    columns:
-      - name: total_customers
-        description: Total number of customers
-      - name: active_customers
-        description: Number of customers who have placed an order
-
-  - name: order_metrics
-    description: Metrics related to order data
-    columns:
-      - name: total_orders
-        description: Total number of orders placed
-      - name: average_order_value
-        description: Average value of orders placed
-
-  - name: customer_order_summary
-    description: Summary report of customer orders
-    columns:
-      - name: customer_id
-        description: ID of the customer
-      - name: total_orders
-        description: Total number of orders placed by the customer
-      - name: total_spent
-        description: Total amount spent by the customer
-=======
       - name: order_date
         description: "Date the order was placed."
         # tests:
@@ -158,4 +130,3 @@ models:
           - not_null
           # - dbt_utils.expression_is_true: # Uncomment if dbt-utils is installed
           #     expression: ">= 0"
->>>>>>> 6cde159
