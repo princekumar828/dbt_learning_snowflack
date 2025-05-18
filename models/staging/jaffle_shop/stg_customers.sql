@@ -1,4 +1,6 @@
-with source as (
+with
+
+source as (
 
     select * from {{ source('jaffle_shop', 'customers') }}
 
@@ -7,9 +9,12 @@ with source as (
 renamed as (
 
     select
+
+        ----------  ids
         id as customer_id,
-        first_name,
-        last_name
+
+        ---------- properties
+        name
 
     from source
 
