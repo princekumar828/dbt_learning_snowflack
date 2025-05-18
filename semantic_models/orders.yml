@@ -1,0 +1,33 @@
+version: 2
+
+metrics:
+  - name: total_orders
+    description: Total number of orders placed
+    type: count
+    sql: count(order_id)
+
+  - name: average_order_value
+    description: Average value of orders
+    type: average
+    sql: avg(order_value)
+
+dimensions:
+  - name: order_id
+    description: Unique identifier for each order
+    type: string
+
+  - name: order_date
+    description: Date when the order was placed
+    type: date
+
+  - name: customer_id
+    description: Unique identifier for the customer who placed the order
+    type: string
+
+  - name: status
+    description: Current status of the order
+    type: string
+
+  - name: order_value
+    description: Total value of the order
+    type: number
