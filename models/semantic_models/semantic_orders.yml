@@ -28,9 +28,7 @@ semantic_models:
         description: "The total number of orders."
         agg: count_distinct
         expr: order_id
-      - name: total_revenue_from_orders # Renamed for clarity
+      - name: total_revenue_from_orders
         description: "The sum of successfully paid order amounts."
         agg: sum
-        expr: total_amount_paid # This now comes from fct_orders.sql
-        agg_params:
-          fill_nulls_with: 0
+        expr: total_amount_paid # agg_params removed as fct_orders already handles nulls
