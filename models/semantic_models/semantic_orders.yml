@@ -1,0 +1,36 @@
+
+semantic_models:
+  - name: semantic_orders
+    description: "Semantic model representing individual orders with their payment details."
+    model: ref('fct_orders') # IMPORTANT: Changed to fct_orders
+    defaults:
+      agg_time_dimension: order_date
+
+    entities:
+      - name: order
+        type: primary
+        expr: order_id
+      - name: customer
+        type: foreign
+        expr: customer_id
+
+    dimensions:
+      - name: order_date
+        type: time
+        expr: order_date # from fct_orders (originally from stg_orders)
+        time_granularity: day
+      - name: order_status
+        type: categorical
+        expr: order_status # from fct_orders (originally from stg_orders)
+
+    measures:
+      - name: count_of_orders
+        description: "The total number of orders."
+        agg: count_distinct
+        expr: order_id
+      - name: total_revenue_from_orders # Renamed for clarity
+        description: "The sum of successfully paid order amounts."
+        agg: sum
+        expr: total_amount_paid # This now comes from fct_orders.sql
+        agg_params:
+          fill_nulls_with: 0

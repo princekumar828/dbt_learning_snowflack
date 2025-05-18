@@ -1,0 +1,32 @@
+// Tip: Consider renaming this file to 'sources.yml' for convention
+version: 2
+
+sources:
+  - name: jaffle_shop # Source for jaffle_shop specific data
+    database: raw
+    schema: jaffle_shop
+    tables:
+      - name: customers
+        description: Raw customers data.
+      - name: orders
+        description: Raw orders data without payment amounts.
+
+  - name: stripe # Source for stripe payment data
+    database: raw
+    schema: stripe
+    tables:
+      - name: payment
+        description: Raw payment data from Stripe, includes order amounts.
+        columns:
+          - name: id
+            description: Primary key for payments.
+          - name: orderid # Note the lowercase 'orderid' from your DDL
+            description: Foreign key to the orders table.
+          - name: paymentmethod
+            description: Method of payment.
+          - name: status
+            description: Payment status.
+          - name: amount
+            description: Payment amount (in cents, typically).
+          - name: created
+            description: Date the payment was created.
