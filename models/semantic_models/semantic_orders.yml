@@ -19,6 +19,7 @@ semantic_models:
         expr: order_date # from fct_orders (originally from stg_orders)
         type_params:
           time_granularity: day
+          time_spine: ref('time_spine')
       - name: order_status
         type: categorical
         expr: order_status # from fct_orders (originally from stg_orders)

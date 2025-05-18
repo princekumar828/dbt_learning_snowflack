@@ -15,15 +15,17 @@ semantic_models:
         type: time
         expr: first_order_date
         type_params:
-          time_granularity: day
+          time_grain: day
+          time_spine: ref('time_spine')
       - name: most_recent_order_date
         type: time
         expr: most_recent_order_date
         type_params:
-          time_granularity: day
+          time_grain: day
+          time_spine: ref('time_spine')
       - name: full_name # Example of a derived dimension
         type: categorical
-        expr: first_name || ' ' || last_name
+        expr: "first_name || ' ' || last_name"
 
     measures:
       - name: count_of_customers

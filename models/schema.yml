@@ -130,3 +130,32 @@ models:
           - not_null
           # - dbt_utils.expression_is_true: # Uncomment if dbt-utils is installed
           #     expression: ">= 0"
+
+  - name: time_spine
+    description: "A continuous series of dates for use in time-series analysis"
+    config:
+      materialized: table
+    columns:
+      - name: date_day
+        description: "The date at day granularity"
+        tests:
+          - unique
+          - not_null
+      - name: year
+        description: "The year extracted from date"
+      - name: month
+        description: "The month number (1-12) extracted from date"
+      - name: day_of_month
+        description: "The day of month (1-31) extracted from date"
+      - name: day_name
+        description: "The name of the day (Monday, Tuesday, etc.)"
+      - name: month_name
+        description: "The name of the month (January, February, etc.)"
+      - name: date_week
+        description: "The date truncated to week"
+      - name: date_month
+        description: "The date truncated to month"
+      - name: date_quarter
+        description: "The date truncated to quarter"
+      - name: date_year
+        description: "The date truncated to year"
